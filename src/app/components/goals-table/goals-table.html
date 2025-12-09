@@ -1,0 +1,120 @@
+<div class="table-wrapper">
+    <div class="controls">
+        <h3>Goals Summary</h3>
+
+        <div class="actions">
+            <select>
+                <option>Filter by Hospital</option>
+            </select>
+            <select>
+                <option>Filter by Status</option>
+            </select>
+            <select>
+                <option>Filter by Goal</option>
+            </select>
+
+            <button class="new-goal-btn" (click)="openAssignModal()">+ Assign New Goal</button>
+        </div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Hospital</th>
+                <th>Status</th>
+                <th>Goal</th>
+                <th>Goal Description</th>
+                <th>Start Date</th>
+                <th class="center">Days in Status</th>
+                <th>Tasks</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let row of goals">
+                <td>
+                    <div class="main-text">{{ row.hospital }}</div>
+                    <div class="sub-text" *ngIf="row.subLocation">{{ row.subLocation }}</div>
+                </td>
+                <td [class]="getStatusClass(row.status)">{{ row.status }}</td>
+                <td>{{ row.goalName }}</td>
+                <td class="desc">{{ row.description }}</td>
+                <td>{{ row.startDate }}</td>
+                <td class="center">{{ row.daysInStatus }}</td>
+                <td>
+                    <div *ngIf="row.hasTask" class="view-task"><span class="material-icons">visibility</span> VIEW TASK
+                    </div>
+                    <div *ngIf="!row.hasTask" class="no-task">No active tasks</div>
+                </td>
+                <td>
+                    <button class="action-btn" [ngClass]="row.status === 'Live' ? 'btn-filled' : 'btn-outline'">
+                        <span class="material-icons" *ngIf="row.status === 'Live'">analytics</span>
+                        <span class="material-icons" *ngIf="row.status !== 'Live'">check</span>
+                        {{ row.status === 'Live' ? "View Hospital's Goals" : 'Mark as Reviewed' }}
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="modal-backdrop" *ngIf="showModal">
+    <div class="modal-content complex-modal">
+
+        <div class="modal-header">
+            <h2>Assign New Goal(s)</h2>
+            <span class="material-icons close-icon" (click)="closeModal()">close</span>
+        </div>
+        <p class="modal-desc">Enable the goals & corresponding targets below that you would like to assign to this
+            hospital. Press the save button when complete.</p>
+
+        <div class="search-bar-container">
+            <input type="text" placeholder="Search Goals..." [(ngModel)]="searchTerm">
+            <span class="material-icons search-icon">search</span>
+        </div>
+
+        <div class="modal-body-scrollable">
+            <div class="goal-item" *ngFor="let goal of filteredAssignableGoals" [class.selected]="goal.isSelected">
+
+                <div class="goal-top-row">
+                    <div class="left-section">
+                        <input type="checkbox" class="custom-checkbox" [(ngModel)]="goal.isSelected">
+                        <span class="goal-name">{{ goal.name }}</span>
+                    </div>
+                    <div class="right-section">
+                        <div class="status-badge">
+                            {{ goal.status }} <span class="material-icons">chevron_right</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-col">
+                        <label>VETCOR AVG.</label> <span>{{ goal.vetcorAvg }}</span>
+                    </div>
+                    <div class="stat-col">
+                        <label>CURRENT</label> <span>{{ goal.current }}</span>
+                    </div>
+                    <div class="stat-col">
+                        <label>RECOMMENDED</label> <span>{{ goal.recommended }}</span>
+                    </div>
+                    <div class="stat-col target-col" *ngIf="goal.showTargetInput">
+                        <label>TARGET</label>
+                        <div class="target-input-wrapper">
+                            <input type="text" [(ngModel)]="goal.targetValue">
+                            <span class="end-q1-badge" *ngIf="goal.targetDateEndQ1">
+                                End of Q1 <span class="material-icons">calendar_today</span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn-prev">« Prev</button>
+            <button class="btn-save" (click)="closeModal()">Save <span class="material-icons">check</span></button>
+        </div>
+
+    </div>
+</div>

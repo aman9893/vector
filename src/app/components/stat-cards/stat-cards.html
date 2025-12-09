@@ -1,0 +1,11 @@
+<div class="cards-container">
+    <div class="card" *ngFor="let item of stats">
+        <div class="icon-wrapper" [ngClass]="item.colorClass">
+            <span class="material-icons">{{ item.icon }}</span>
+        </div>
+        <div class="info">
+            <div class="count">{{ item.count }}</div>
+            <div class="label">{{ item.label }}</div>
+        </div>
+    </div>
+</div>

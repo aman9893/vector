@@ -1,0 +1,107 @@
+.main-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 15px 40px;
+  font-family: 'Roboto', sans-serif;
+}
+
+.top-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  font-size: 0.85rem;
+  color: #666;
+
+  /* Breadcrumbs (Left side) */
+  .breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    
+    .home-icon { font-size: 18px; color: #555; margin-bottom: 2px; }
+    .separator { margin: 0 5px; color: #999; }
+    .text { cursor: pointer; }
+    .text.active { color: #00ba9d; font-weight: 500; } /* Teal color for active breadcrumb */
+  }
+
+  /* Right Side Container */
+  .right-actions {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+
+    /* Navigation Links */
+    .nav-links {
+      display: flex;
+      gap: 20px;
+
+      .nav-item {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        text-decoration: none;
+        color: #777;
+        font-weight: 500;
+        font-size: 0.85rem;
+        transition: color 0.2s;
+
+        .material-icons { font-size: 18px; }
+
+        &:hover { color: #00ba9d; }
+
+        /* The 'Active' state (Blue in your screenshot) */
+        &.active {
+          color: #3498db; 
+          font-weight: 600;
+          .material-icons { color: #3498db; }
+        }
+      }
+    }
+
+    /* Vertical Divider Line */
+    .vertical-line {
+      width: 1px;
+      height: 30px;
+      background-color: #ddd;
+    }
+
+    /* User Profile */
+    .user-profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-align: right;
+
+      .text-info {
+        display: flex;
+        flex-direction: column;
+        
+        .name { 
+          font-weight: 700; 
+          color: #333; 
+          font-size: 0.85rem; 
+        }
+        .role { 
+          font-size: 0.65rem; 
+          color: #999; 
+          letter-spacing: 0.5px; 
+          text-transform: uppercase; 
+          margin-top: 2px;
+        }
+      }
+
+      .avatar {
+        font-size: 42px; 
+        color: #bbb;
+      }
+    }
+  }
+}
+
+h2 {
+  font-weight: 400;
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 1.5rem;
+}

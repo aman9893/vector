@@ -1,0 +1,39 @@
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Responsive grid */
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  .icon-wrapper {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid;
+
+    .material-icons { font-size: 32px; }
+
+    /* Variants based on CSS class */
+    &.green { color: #00ba9d; border-color: #00ba9d; }
+    &.blue { color: #3498db; border-color: #3498db; }
+    &.orange { color: #f39c12; border-color: #f39c12; }
+    &.red { color: #e74c3c; border-color: #e74c3c; }
+  }
+
+  .info {
+    .count { font-size: 2.2rem; font-weight: 700; color: #333; line-height: 1; margin-bottom: 5px; }
+    .label { font-size: 0.9rem; color: #666; font-weight: 500; line-height: 1.2; }
+  }
+}
