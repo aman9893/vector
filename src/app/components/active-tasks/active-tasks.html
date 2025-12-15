@@ -1,1 +1,67 @@
-<p>active-tasks works!</p>
+<div class="page-container">
+
+    <h2 class="page-title">Tasks & Updates</h2>
+
+    <div class="stats-grid">
+        <div class="stat-card" *ngFor="let stat of taskStats">
+            <div class="icon-circle" [ngClass]="stat.colorClass">
+                <span class="material-icons">{{ stat.icon }}</span>
+            </div>
+            <div class="stat-info">
+                <div class="count">{{ stat.count }}</div>
+                <div class="label">{{ stat.label }}</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="overview-section">
+
+        <div class="controls-header">
+            <h3>Task Overview</h3>
+            <div class="actions">
+                <div class="toggle-group">
+                    <button class="toggle-btn active">Assigned to Me</button>
+                    <button class="toggle-btn">Assigned to Others</button>
+                </div>
+                <button class="create-btn">+ Create New Task</button>
+            </div>
+        </div>
+
+        <table class="tasks-table">
+            <thead>
+                <tr>
+                    <th class="col-icon">Assigned Type</th>
+                    <th>Hospital</th>
+                    <th>Task</th>
+                    <th>Affiliated Goal</th>
+                    <th>Due Date</th>
+                    <th>Created By</th>
+                    <th>Assigned To</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of tasks">
+                    <td class="col-icon">
+                        <div class="type-icon-circle">
+                            <span class="material-icons" *ngIf="row.type === 'individual'">person</span>
+                            <span class="material-icons" *ngIf="row.type === 'group'">groups</span>
+                        </div>
+                    </td>
+                    <td class="hospital-name">{{ row.hospital }}</td>
+                    <td class="task-desc">{{ row.taskName }}</td>
+                    <td>{{ row.goal }}</td>
+                    <td>{{ row.dueDate }}</td>
+                    <td>{{ row.createdBy }}</td>
+                    <td>{{ row.assignedTo }}</td>
+                    <td>
+                        <span class="status-badge" [ngClass]="getStatusClass(row.status)">
+                            {{ row.status }}
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+</div>
