@@ -1,1 +1,65 @@
-<p>scheduling works!</p>
+<div class="schedule-management-container">
+  
+  <h2>Schedule Management</h2>
+
+  <div class="action-bar">
+    
+    <div class="tabs">
+      <span class="tab active">Upcoming</span>
+      <span class="tab">History</span>
+    </div>
+
+    <div class="controls-right">
+      <select class="filter-dropdown">
+        <option>Filter by Hospital</option>
+      </select>
+      <select class="filter-dropdown">
+        <option>Filter by Attendees</option>
+      </select>
+      <button class="new-meeting-btn">+ New Meeting</button>
+    </div>
+
+  </div>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Subject</th>
+          <th>Hospital</th>
+          <th>Scheduled Date</th>
+          <th>Duration</th>
+          <th>Time Zone</th>
+          <th>Attendees</th>
+          <th></th> </tr>
+      </thead>
+      <tbody>
+        @for (meeting of meetings; track meeting.subject) {
+          <tr>
+            <td class="subject">{{ meeting.subject }}</td>
+            <td class="hospital">{{ meeting.hospital }}</td>
+            <td class="date">
+              <i class="fa fa-clock-o" aria-hidden="true" style="margin-right: 5px; color: #9ca3af;"></i>
+              {{ meeting.date }}
+            </td>
+            <td><span class="duration-badge">{{ meeting.duration }}</span></td>
+            <td class="timezone">{{ meeting.timezone }}</td>
+            <td class="attendees">{{ meeting.attendees }}</td>
+            <td class="action">
+              
+              <button class="go-to-meeting-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="btn-icon">
+                  <path d="M23 7l-7 5 7 5V7z"></path>
+                  <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
+                </svg>
+                Go to meeting
+              </button>
+
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+</div>
