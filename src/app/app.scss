@@ -2,7 +2,7 @@
   max-width: 1400px;
   margin: 0 auto;
   padding: 15px 40px;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Poppins','Roboto', sans-serif;
 }
 
 .top-toolbar {
@@ -45,6 +45,8 @@
         font-weight: 500;
         font-size: 0.85rem;
         transition: color 0.2s;
+        align-items: center;
+        display: flex;
 
         .material-icons { font-size: 18px; }
 

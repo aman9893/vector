@@ -1,20 +1,55 @@
 .top-bar {
-  background-color: #005f56; // Dark Teal
+  background-color: #005f56;
   color: white;
-  padding: 0 2rem;
   height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
+  /* Desktop Padding */
+  padding: 0 2rem; 
+
+  /* Mobile/Tablet Padding (Responsive) */
+  @media (max-width: 768px) {
+    padding: 0 1rem;
+  }
 
   .brand {
     display: flex;
     align-items: center;
     gap: 10px;
     
-    .logo { font-weight: 900; font-size: 1.2rem; letter-spacing: 1px; }
-    .divider { opacity: 0.5; }
-    .title { font-weight: 400; font-size: 0.9rem; letter-spacing: 1px; }
+    .logo-img { 
+      height: 30px; 
+      width: auto; 
+      display: block; 
+      
+      /* Make logo slightly smaller on phones */
+      @media (max-width: 480px) {
+        height: 24px;
+      }
+    }
+
+    .divider { 
+      opacity: 0.5;
+      
+      /* Hide divider on very small screens */
+      @media (max-width: 480px) {
+        display: none;
+      } 
+    }
+
+    .title { 
+      font-weight: 400; 
+      font-size: 0.9rem; 
+      letter-spacing: 1px;
+      white-space: nowrap; /* Prevents text from wrapping awkwardly */
+
+      /* Hide the long title on mobile phones to prevent overlap */
+      @media (max-width: 480px) {
+        display: none;
+      }
+    }
   }
 
   .logout-btn {
@@ -25,10 +60,27 @@
     border-radius: 4px;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 8px;
     cursor: pointer;
     font-size: 0.8rem;
+    transition: background 0.3s;
+
+    &:hover {
+      background: rgba(255,255,255,0.2);
+    }
     
     .material-icons { font-size: 16px; }
+
+    /* RESPONSIVE: On small screens, hide the text 'LOGOUT' and only show icon */
+    @media (max-width: 600px) {
+      padding: 8px; /* Square button */
+      font-size: 0; /* Hides text */
+      gap: 0;
+      
+      /* Bring the icon back to visible size since parent font-size is 0 */
+      .material-icons { 
+        font-size: 20px; 
+      }
+    }
   }
 }

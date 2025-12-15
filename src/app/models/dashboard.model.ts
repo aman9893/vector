@@ -29,3 +29,21 @@ export interface AssignableGoal {
   targetValue?: string;
   targetDateEndQ1?: boolean;
 }
+
+export interface TaskStat {
+  label: string;
+  count: number;
+  icon: string;
+  colorClass: string; // 'red', 'blue', 'green'
+}
+
+export interface TaskRow {
+  type: 'individual' | 'group'; // determines the icon
+  hospital: string;
+  taskName: string;
+  goal: string;
+  dueDate: string;
+  createdBy: string;
+  assignedTo: string;
+  status: 'Past Due' | 'Complete' | 'Pending';
+}
